@@ -20,9 +20,9 @@ A generic text search library written in Go
 
 The index performs best when there are generally distinct prefixes in the indexes. The library is designed for in-memory search on static or infrequently changing datasets.
 
-Internally, it uses an immutable radix tree (provided by [hashicorp/go-immutable-radix](http://github.com/hashicorp/go-immutable-radix)) to store and lookup indexes.
+Internally, it uses an immutable radix tree (provided by [hashicorp/go-immutable-radix](http://github.com/hashicorp/go-immutable-radix)) to store and lookup indexes for efficient prefix searching.
 
-Values are indexed by first passing through a tokenizer, which returns a set of unique strings to build an inverted index.
+Values are indexed by first passing through a tokenizer, which returns a set of unique strings to build the inverted index.
 
 The default tokenizer will generate the following case insensitive indexes, using `the quick_brown-fox (jumps)` as the example value:
 - Prefix variations of all word boundaries, split by whitespace and underscores
@@ -44,7 +44,7 @@ This means that a search of `just works` will match all of the following:
 - `it just (works)`
 - `it-just-works`
 
-A custom tokenizer implementation can be provided to support custom indexing of prefixes.
+A custom tokenization implementation that implements the `Tokenizer` interface can be provided to support more complex use cases.
 
 ## Installation
 
