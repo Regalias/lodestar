@@ -6,7 +6,7 @@ import (
 
 func Test_defaultTokenizer_Tokenize(t *testing.T) {
 
-	tr := &defaultTokenizer{}
+	tr := &DefaultTokenizer{}
 
 	type args struct {
 		item IndexableItem

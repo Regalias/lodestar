@@ -5,13 +5,13 @@ import (
 	"strings"
 )
 
-// defaultTokenizer implements the Tokenizer interface with basic tokenization logic.
+// DefaultTokenizer implements the Tokenizer interface with basic tokenization logic.
 // The string is normalized by lowercasing and trimming whitespace.
 // Underscores are replaced with spaces for terms longer than 3 characters.
 // It tokenizes strings by splitting on whitespace and computing prefix combinations with and without hyphens.
-type defaultTokenizer struct{}
+type DefaultTokenizer struct{}
 
-func (t *defaultTokenizer) Tokenize(item IndexableItem) []string {
+func (t *DefaultTokenizer) Tokenize(item IndexableItem) []string {
 	var allTokens []string
 	for _, value := range item.GetValuesForIndexing() {
 		tokens := t.tokenizeString(value)
@@ -24,7 +24,7 @@ func (t *defaultTokenizer) Tokenize(item IndexableItem) []string {
 	return allTokens
 }
 
-func (t *defaultTokenizer) tokenizeString(value string) []string {
+func (t *DefaultTokenizer) tokenizeString(value string) []string {
 	// Normalize the term
 	normalizedValue := t.NormalizeString(value)
 	terms := splitOnWhitespace(normalizedValue)
@@ -45,7 +45,7 @@ func (t *defaultTokenizer) tokenizeString(value string) []string {
 
 // NormalizeString normalizes a term by converting it to lowercase and removing leading/trailing whitespace.
 // If the term is longer than 3 characters, it also replaces underscores with spaces.
-func (t *defaultTokenizer) NormalizeString(value string) string {
+func (t *DefaultTokenizer) NormalizeString(value string) string {
 	normalized := strings.ToLower(value)
 	normalized = strings.TrimSpace(normalized)
 	if len(normalized) > 3 {

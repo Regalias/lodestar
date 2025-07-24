@@ -22,7 +22,7 @@ func New[T IndexableItem](opts ...Option) *Index[T] {
 
 	// Use a default tokenizer if none provided
 	if config.Tokenizer == nil {
-		config.Tokenizer = &defaultTokenizer{}
+		config.Tokenizer = &DefaultTokenizer{}
 	}
 
 	return &Index[T]{
