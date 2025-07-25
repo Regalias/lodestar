@@ -19,7 +19,7 @@ type result[T IndexableItem] struct {
 type resultHeap[T IndexableItem] []result[T]
 
 func (h resultHeap[T]) Len() int           { return len(h) }
-func (h resultHeap[T]) Less(i, j int) bool { return h[i].Rank > h[j].Rank }
+func (h resultHeap[T]) Less(i, j int) bool { return h[i].Rank < h[j].Rank }
 func (h resultHeap[T]) Swap(i, j int)      { h[i], h[j] = h[j], h[i] }
 func (h *resultHeap[T]) Push(x any) {
 	*h = append(*h, x.(result[T]))
